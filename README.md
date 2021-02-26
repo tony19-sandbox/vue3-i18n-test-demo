@@ -1,29 +1,25 @@
-# vue3-ts-test1
+> Demo for https://stackoverflow.com/q/66348369/6277151
 
-## Project setup
-```
-yarn install
-```
+This shows how to use `vue-i18n` with `@vue/test-utils` in Vue 3:
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+```js
+import { mount } from '@vue/test-utils'
+import { createI18n } from 'vue-i18n'
+import Home from '@/components/Home.vue'
 
-### Compiles and minifies for production
-```
-yarn build
-```
+describe('Home.vue', () => {
+  it('i18n', () => {
+    const i18n = createI18n({
+      // vue-i18n options here ...
+    })
 
-### Run your unit tests
-```
-yarn test:unit
-```
+    const wrapper = mount(Home, {
+      global: {
+        plugins: [i18n]
+      }
+    })
 
-### Lints and fixes files
+    expect(wrapper.vm.t).toBeTruthy()
+  })
+})
 ```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
